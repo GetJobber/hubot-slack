@@ -350,6 +350,6 @@ class SlackBot extends Adapter
     if err || !res.members.length
       @robot.logger.error "Can't fetch users"
       return
-    @client.updateUserInBrain member for member in res.members
+    @client.updateUserInBrain member for member in res.members when not member.is_bot and not member.deleted
 
 module.exports = SlackBot
